@@ -1,5 +1,6 @@
 import uuid
 from django.db import models
+from django.contrib.auth.models import Abstractuser 
 
 # Create your models here.
 class userProfile(models.Model): 
@@ -23,7 +24,7 @@ class user(Abstractuser):
 
 class conversation(models.Model):
     conversation_id = models.UUIDField(primary_key=True, null=False, db_index = True )
-    participant_id = models.ForeignKey("user", on_delete=models.CASCADE)
+    participants_id = models.ForeignKey("user", on_delete=models.CASCADE)
     created_at = models.TimeField(default=timezone.now() auto_now_add=True)
 
 
