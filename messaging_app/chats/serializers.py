@@ -1,6 +1,9 @@
 from rest_framework import serializer 
 from .models import user, Conversation, Message 
 
+User = get_user_model()
+sender_username = serializer.SerializerMethodField()
+
 class Users(serializers.ModelSerializer): 
     class Meta: 
         model = user
@@ -10,6 +13,9 @@ class Users(serializers.ModelSerializer):
             'last_name', 
             'email'
             ]
+    def get_sender_username(self, obj): 
+        return obj.sender.username
+    
 
 class conversation(serializers.ModelSerializer): 
     class Meta: 
