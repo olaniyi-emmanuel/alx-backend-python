@@ -22,7 +22,7 @@ class user(Abstractuser):
     #password = models.CharField(null=False,  max_length=50)
     
 
-class conversation(models.Model):
+class Conversation(models.Model):
     conversation_id = models.UUIDField(primary_key=True, null=False, db_index = True )
     participants_id = models.ForeignKey("user", on_delete=models.CASCADE)
     created_at = models.TimeField(default=timezone.now() auto_now_add=True)
