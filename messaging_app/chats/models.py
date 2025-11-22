@@ -28,7 +28,7 @@ class Conversation(models.Model):
     created_at = models.TimeField(default=timezone.now() auto_now_add=True)
 
 
-class message(models.Model):
+class Message(models.Model):
     message_id = models.UUIDField(primary_key=True, null=False)
     sender_id = models.ForeignKey("user", on_delete=models.CASCADE)
     message_body = models.TextField(null=False)
