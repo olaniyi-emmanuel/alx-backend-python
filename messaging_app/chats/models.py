@@ -10,7 +10,7 @@ class userProfile(models.Model):
     ]
 
 
-class user(models.Model): 
+class user(Abstractuser): 
     user_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False),
     first_name = models.TextField(null=False),
     last_name = models.TextField(null= False)
@@ -18,7 +18,7 @@ class user(models.Model):
     phone_number = models.TextField(null= False)
     role = models.CharField(max_length=10, choices=userProfile.role, default='guest')
     created_at = models.TimeField(auto_now_add=True)
-    password = models.CharField(null=False,  max_length=50)
+    #password = models.CharField(null=False,  max_length=50)
     
 
 class conversation(models.Model):
