@@ -27,6 +27,7 @@ class conversation(serializers.ModelSerializer):
         ]
 
 class message(serializers.ModelSerializer): 
+    text = serializer.CharField(max_length=500)
     class Meta: 
         model = Message 
         fields = [
