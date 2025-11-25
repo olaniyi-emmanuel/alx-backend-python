@@ -7,6 +7,7 @@ class UsersSerializer(serializers.ModelSerializer):
         model = user
         fields = [
             'user_id',
+            'username', 
             'full_name', 
             'first_name', 
             'last_name', 
@@ -15,6 +16,9 @@ class UsersSerializer(serializers.ModelSerializer):
     def get_sender_username(self, obj): 
         return obj.sender.username
     
+    def check_username(self, value): 
+        if user.objects.filter(username=value).is_exists():
+            raise serializers.ValidationError("Username already exists")
 
 
 
