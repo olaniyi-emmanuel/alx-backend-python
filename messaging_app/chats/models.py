@@ -1,6 +1,8 @@
+#from django.utils import timezone
 import uuid
 from django.db import models
-from django.contrib.auth.models import Abstractuser 
+from django.contrib.auth.models import AbstractUser
+
 
 # Create your models here.
 class userProfile(models.Model): 
@@ -11,7 +13,7 @@ class userProfile(models.Model):
     ]
 
 
-class user(Abstractuser): 
+class user(AbstractUser): 
     user_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False),
     first_name = models.TextField(null=False),
     last_name = models.TextField(null= False)
@@ -25,11 +27,11 @@ class user(Abstractuser):
 class Conversation(models.Model):
     conversation_id = models.UUIDField(primary_key=True, null=False, db_index = True )
     participants_id = models.ForeignKey("user", on_delete=models.CASCADE)
-    created_at = models.TimeField(default=timezone.now() auto_now_add=True)
+    created_at = models.TimeField(auto_now_add=True)
 
 
 class Message(models.Model):
     message_id = models.UUIDField(primary_key=True, null=False)
     sender_id = models.ForeignKey("user", on_delete=models.CASCADE)
     message_body = models.TextField(null=False)
-    sent_at = models.TimeField(default=timezone.now() auto_now_add=True)
+    sent_at = models.TimeField(auto_now_add=True)

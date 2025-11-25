@@ -16,7 +16,26 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from drf_yasg.views import get_schema_view
+from drf_yasg import openapi
+from rest_framework import permissions
+
+
+schema_view = get_schema_view(
+    openapi.Info(
+        title = "Messaging Application", 
+        default_version = "v1", 
+        description =  "Welcome to the Fatest Web Application  for Messaging in the 21st century", 
+        terms_of_service = "hhtps://www.linkedin.com", 
+        contact=openapi.Contact(email="contact@goalhyke.com"),
+        license=openapi.License(name="BSD License"),   
+
+    ), 
+    public = True, 
+    permission_classes = (permissions.AllowAny,),
+)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('swagger/', schema_view.with_ui('swagger', cache_timeout= 0), name = 'swagger_schema'),
 ]
