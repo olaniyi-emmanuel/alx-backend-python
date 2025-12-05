@@ -1,11 +1,13 @@
+from django.db import router
 from django.urls import path, include
 from rest_framework import routers
 from rest_framework.routers import DefaultRouter
 
 from .views import ConversationViewSet, MessageViewSet
 
-router = routers.DefaultRouter()
-router.register(r'conversations', ConversationViewSet, basename='conversations')
-router.register(r'messages', MessageViewSet, basename='messages')
+routers = routers.DefaultRouter()
+routers.register(r'conversations', ConversationViewSet, basename='conversations')
+routers.register(r'messages', MessageViewSet, basename='messages')
 
-urlpatterns = [path('/conversations', include(routers.urls))]
+urlpatterns = [path('conversations', include(routers.urls)),
+               path('messages', include(routers.urls)),]

@@ -14,7 +14,7 @@ class ConversationViewSet(viewsets.ModelViewSet):
 class MessageViewSet(viewsets.ModelViewSet):
     queryset = Message.objects.all()
     serializer_class = MessageSerializer
-    filter_backends = [filters.SearchFilter
+    filter_backends = [filters.SearchFilter]
     def create(self, request, *args, **kwargs):
         # 1. Run the serializer
         serializer = self.get_serializer(data=request.data)

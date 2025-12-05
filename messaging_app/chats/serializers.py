@@ -1,10 +1,10 @@
 from rest_framework import serializers
-from .models import user, Conversation, Message 
+from .models import User, Conversation, Message
 
 class UsersSerializer(serializers.ModelSerializer): 
     full_name  = serializers.SerializerMethodField()
     class Meta: 
-        model = user
+        model = User
         fields = [
             'user_id',
             'username', 

@@ -13,9 +13,9 @@ class userProfile(models.Model):
     ]
 
 
-class user(AbstractUser): 
+class User(AbstractUser):
     user_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False),
-    username = models.Charfield(max_lenth=120, unique=True, null=False, db_index = True)
+    username = models.CharField(unique=True, null=False, db_index = True)
     first_name = models.TextField(null=False),
     last_name = models.TextField(null= False)
     email = models.EmailField(unique=True, null=False, db_index = True)
