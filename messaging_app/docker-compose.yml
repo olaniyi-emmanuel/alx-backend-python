@@ -1,0 +1,28 @@
+name: messaging_app
+
+services:
+    web:
+      image: messaging_app
+      command: sh -c "python3 manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+      ports:
+        - "8000:8000"
+
+    db:
+      image: mysql:80
+      restart: always
+      environment:
+        MYSQL_ROOT_PASSWORD: app
+        MYSQL_DATABASE: app
+        MYSQL_USER: app
+        MYSQL_PASSWORD: app
+      ports:
+        - "3306:3306"
+      volumes:
+        - db_data:/var/lib/mysql
+      healthcheck:
+        test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+        interval: 10s
+        timeout: 5s
+        retries: 5
+volumes:
+  db_data:
