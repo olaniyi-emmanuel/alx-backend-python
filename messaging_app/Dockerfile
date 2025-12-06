@@ -2,7 +2,7 @@ FROM python:3.10
 
 WORKDIR /app
 
-COPY Requirements.txt .
+COPY requirements.txt .
 
 RUN pip install --no-cache-dir -r Requirements.txt
 
