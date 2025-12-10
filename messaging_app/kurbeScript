@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind : Deployment
+metadata:
+  name: messaging
+
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: messaging
+  template:
+    metadata:
+      labels:
+        app: messaging
+    spec:
+      containers:
+      - name: messaging
+        image: messaging_app
+        ports:
+        - containerPort: 8000
